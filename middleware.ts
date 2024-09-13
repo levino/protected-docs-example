@@ -1,6 +1,8 @@
 import PocketBase from "pocketbase";
 import { next, rewrite } from "@vercel/edge";
 
+// This middleware will block all unauthenticated requests. In order for the users
+// to go through the login flow, we need to NOT protect /public/** and /api/**.
 export const config = {
   matcher: ["/", "/((?!public/|api/).*)"],
 };

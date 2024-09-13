@@ -19,15 +19,18 @@
 
     const login = () =>
       pb
+        // The collection name is non standard because I have multiple auth collections. Usually it's just "users".
         .collection("protected_docs_example_users")
         .authWithOAuth2({ provider: "github" })
         .then(() =>
+          // One could also set the cookie with JS but then it would not be httpOnly. So I chose to set it from the server.
           fetch("/api/cookie", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ token: pb.authStore.token }),
           })
         )
+        // Now the auth cookie is set and the user is logged in. We can reload the page to show the protected content.
         .then(() => window.location.reload());
 
     document.addEventListener("DOMContentLoaded", () => {
