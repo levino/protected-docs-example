@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/public/infima.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container padding-top--lg">
+      <h1>Bitte einloggen</h1>
+      <p>Bitte logge Dich ein, um die Inhalte zu sehen.</p>
+      <button type="button" class="button button--primary" id="login">
+        Login mit GitHub
+      </button>
+    </div>
+  </body>
+  <script src="/public/pocketbase.umd.js"></script>
+  <script>
+    const pb = new PocketBase("https://api.levinkeller.de");
+
+    const login = () =>
+      pb
+        .collection("protected_docs_example_users")
+        .authWithOAuth2({ provider: "github" })
+        .then(() =>
+          fetch("/api/cookie", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token: pb.authStore.token }),
+          })
+        )
+        .then(() => window.location.reload());
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("login").addEventListener("click", login);
+    });
+  </script>
+</html>
