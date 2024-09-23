@@ -40,7 +40,7 @@ export default async function authentication(request: Request) {
 }
 ```
 
-Then only users whose accounts are made a "member" after creation could access the website.**Please be aware that this only is secure, iff you make sure that users cannot make themselves "members" [by using `@request.data.member:isset = false` in the appropriate API rules](https://github.com/pocketbase/pocketbase/discussions/5486#discussioncomment-10556948)!**
+Then only users whose accounts are made a "member" after creation could access the website. **Please be aware that this only is secure, iff you make sure that users cannot make themselves "members" [by using `@request.data.member:isset = false` in the appropriate API rules](https://github.com/pocketbase/pocketbase/discussions/5486#discussioncomment-10556948)!**
 
 ## Run it yourself
 
