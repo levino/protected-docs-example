@@ -1,0 +1,20 @@
+{
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true,
+    "exclude": [
+      "build",
+      ".docusaurus",
+      "static/public/pocketbase.umd.js",
+      "static/public/infima.css"
+    ]
+  },
+  "lint": {
+    "exclude": [
+      "build",
+      ".docusaurus",
+      "static/public/pocketbase.umd.js",
+      "static/public/infima.css"
+    ]
+  }
+}

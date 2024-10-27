@@ -17,26 +17,26 @@
   </body>
   <script src="/public/pocketbase.umd.js"></script>
   <script>
-    const pb = new PocketBase("https://api.levinkeller.de");
+    const pb = new PocketBase('https://api.levinkeller.de')
 
     const login = () =>
       pb
         // The collection name is non standard because I have multiple auth collections. Usually it's just "users".
-        .collection("protected_docs_example_users")
-        .authWithOAuth2({ provider: "github" })
+        .collection('protected_docs_example_users')
+        .authWithOAuth2({ provider: 'github' })
         .then(() =>
           // One could also set the cookie with JS but then it would not be httpOnly. So I chose to set it from the server.
-          fetch("/api/cookie", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
+          fetch('/api/cookie', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token: pb.authStore.token }),
           })
         )
         // Now the auth cookie is set and the user is logged in. We can reload the page to show the protected content.
-        .then(() => window.location.reload());
+        .then(() => window.location.reload())
 
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("login").addEventListener("click", login);
-    });
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('login').addEventListener('click', login)
+    })
   </script>
 </html>
